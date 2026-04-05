@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Dashboard — Let Me Drive</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">
+      <span class="logo-icon">🚗</span>
+      LET ME <span>DRIVE</span>
+    </a>
+    <div class="navbar-links">
+      <span style="color:var(--text-muted);font-size:0.85rem;" id="navGreeting">Driver Dashboard</span>
+      <button onclick="logout()" class="btn btn-ghost" style="padding:8px 16px;font-size:0.85rem;">
+        Sign Out
+      </button>
+    </div>
+  </nav>
+
+  <div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">🪪</div>
+        <div class="sidebar-name" id="sidebarName">Loading...</div>
+        <div class="sidebar-role">Driver</div>
+        <!-- Availability Toggle -->
+        <div class="toggle-wrap" style="margin-top:14px;">
+          <label class="toggle">
+            <input type="checkbox" id="availabilityToggle" onchange="toggleAvailability()" />
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label" id="availabilityLabel">Available</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Dashboard</div>
+        <div class="sidebar-link active" onclick="showTab('overview')" id="tab-overview">
+          <span class="link-icon">📊</span> Overview
+        </div>
+        <div class="sidebar-link" onclick="showTab('rides')" id="tab-rides">
+          <span class="link-icon">🚗</span> My Rides
+        </div>
+        <div class="sidebar-link" onclick="showTab('profile')" id="tab-profile">
+          <span class="link-icon">👤</span> My Profile
+        </div>
+
+        <div class="sidebar-label" style="margin-top:16px;">Account</div>
+        <div class="sidebar-link" onclick="logout()">
+          <span class="link-icon">🚪</span> Sign Out
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+      <!-- ===== OVERVIEW TAB ===== -->
+      <div class="tab-panel active" id="panel-overview">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">OVERVIEW</h1>
+          <p class="dashboard-subtitle" id="overviewGreeting">Welcome back!</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-label">Total Rides</div>
+            <div class="stat-card-value" id="statRides">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Avg Rating</div>
+            <div class="stat-card-value" id="statRating">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Experience</div>
+            <div class="stat-card-value" id="statExp">0 yrs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Status</div>
+            <div class="stat-card-value" id="statStatus" style="font-size:1.1rem;">🟢 Available</div>
+          </div>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="card mt-6">
+          <div class="card-header">
+            <span class="card-title">QUICK INFO</span>
+            <span class="badge badge-accent">Driver Account</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" id="quickInfoGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- Recent Ride (last booking) -->
+        <div class="card mt-6">
+          <div class="card-header">
+            <span class="card-title">RECENT ACTIVITY</span>
+          </div>
+          <div id="recentRides">
+            <div class="loading-screen"><span class="spinner"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RIDES TAB ===== -->
+      <div class="tab-panel" id="panel-rides">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">MY RIDES</h1>
+          <p class="dashboard-subtitle">All your ride history and incoming bookings</p>
+        </div>
+
+        <div id="ridesContainer">
+          <div class="loading-screen"><span class="spinner"></span></div>
+        </div>
+      </div>
+
+      <!-- ===== PROFILE TAB ===== -->
+      <div class="tab-panel" id="panel-profile">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">MY PROFILE</h1>
+          <p class="dashboard-subtitle">Your driver information and credentials</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="sidebar-avatar" style="width:64px;height:64px;font-size:1.8rem;">🪪</div>
+              <div>
+                <div style="font-weight:800;font-size:1.2rem;" id="profileName">—</div>
+                <div style="color:var(--accent);font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Verified Driver</div>
+              </div>
+            </div>
+            <div id="profileBadge"></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" id="profileGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="utils.js"></script>
+  <script src="driver-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passenger Dashboard — Let Me Drive</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">
+      <span class="logo-icon">🚗</span>
+      LET ME <span>DRIVE</span>
+    </a>
+    <div class="navbar-links">
+      <span style="color:var(--text-muted);font-size:0.85rem;">Passenger Dashboard</span>
+      <button onclick="logout()" class="btn btn-ghost" style="padding:8px 16px;font-size:0.85rem;">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">🚗</div>
+        <div class="sidebar-name" id="sidebarName">Loading...</div>
+        <div class="sidebar-role" style="color:var(--accent-2);">Passenger</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Dashboard</div>
+        <div class="sidebar-link active" onclick="showTab('find')" id="tab-find">
+          <span class="link-icon">🔍</span> Find Drivers
+        </div>
+        <div class="sidebar-link" onclick="showTab('bookings')" id="tab-bookings">
+          <span class="link-icon">📋</span> My Bookings
+        </div>
+        <div class="sidebar-link" onclick="showTab('profile')" id="tab-profile">
+          <span class="link-icon">👤</span> My Profile
+        </div>
+
+        <div class="sidebar-label" style="margin-top:16px;">Account</div>
+        <div class="sidebar-link" onclick="logout()">
+          <span class="link-icon">🚪</span> Sign Out
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+      <!-- ===== FIND DRIVERS TAB ===== -->
+      <div class="tab-panel active" id="panel-find">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">FIND A DRIVER</h1>
+          <p class="dashboard-subtitle">Browse available drivers and book your ride</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="form-group" style="flex:1;min-width:120px;">
+            <label class="form-label">Min. Experience (yrs)</label>
+            <input type="number" class="form-control" id="filterExp" placeholder="0" min="0" max="30" value="0" />
+          </div>
+          <div class="form-group" style="flex:1;min-width:120px;">
+            <label class="form-label">Availability</label>
+            <select class="form-control" id="filterAvailable">
+              <option value="true">Available Only</option>
+              <option value="">All Drivers</option>
+            </select>
+          </div>
+          <button onclick="loadDrivers()" class="btn btn-primary" style="align-self:flex-end;">
+            🔍 &nbsp;Search
+          </button>
+          <button onclick="resetFilters()" class="btn btn-ghost" style="align-self:flex-end;">
+            Reset
+          </button>
+        </div>
+
+        <!-- Driver Grid -->
+        <div id="driversGrid">
+          <div class="loading-screen"><span class="spinner"></span><span>Finding drivers near you...</span></div>
+        </div>
+      </div>
+
+      <!-- ===== BOOKINGS TAB ===== -->
+      <div class="tab-panel" id="panel-bookings">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">MY BOOKINGS</h1>
+          <p class="dashboard-subtitle">Your ride history and upcoming trips</p>
+        </div>
+
+        <div id="bookingsContainer">
+          <div class="loading-screen"><span class="spinner"></span></div>
+        </div>
+      </div>
+
+      <!-- ===== PROFILE TAB ===== -->
+      <div class="tab-panel" id="panel-profile">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">MY PROFILE</h1>
+          <p class="dashboard-subtitle">Your passenger account details</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="sidebar-avatar" style="width:64px;height:64px;font-size:1.8rem;">🚗</div>
+              <div>
+                <div style="font-weight:800;font-size:1.2rem;" id="profileName">—</div>
+                <div style="color:var(--accent-2);font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Passenger Account</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" id="profileGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== BOOKING MODAL ===== -->
+  <div class="modal-overlay hidden" id="bookingModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeBookingModal()">✕</button>
+      <h2 class="modal-title">BOOK A DRIVER</h2>
+
+      <!-- Selected Driver Info -->
+      <div id="selectedDriverInfo" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;">
+      </div>
+
+      <!-- Booking Form -->
+      <div style="display:flex;flex-direction:column;gap:14px;" id="bookingFormContent">
+        <div class="form-group">
+          <label class="form-label">📍 Pickup Location</label>
+          <input type="text" class="form-control" id="pickupLocation" placeholder="e.g., Koregaon Park, Pune" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">🏁 Destination</label>
+          <input type="text" class="form-control" id="destination" placeholder="e.g., Pune Airport" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">📏 Estimated Distance (km)</label>
+          <input type="number" class="form-control" id="estimatedDistance" placeholder="Auto-calculated if blank" min="1" max="200" />
+        </div>
+
+        <!-- Fare Preview -->
+        <div style="background:var(--accent-dim);border:1px solid var(--border-accent);border-radius:var(--radius-sm);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;">Estimated Fare</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:2px;">₹50 base + ₹12/km</div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:1.6rem;font-weight:700;color:var(--accent);" id="farePreview">₹ —</div>
+        </div>
+
+        <div id="bookingError" style="color:var(--danger);font-size:0.85rem;display:none;"></div>
+
+        <button class="btn btn-primary btn-block btn-lg" onclick="confirmBooking()">
+          🚗 &nbsp;Confirm Booking
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAYMENT MODAL ===== -->
+  <div class="modal-overlay hidden" id="paymentModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closePaymentModal()">✕</button>
+      <h2 class="modal-title">COMPLETE PAYMENT</h2>
+
+      <div id="paymentDetails" style="margin-bottom:20px;"></div>
+
+      <div style="margin-bottom:20px;">
+        <p style="font-size:0.82rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Choose Payment Method</p>
+        <div class="payment-methods">
+          <div class="payment-method selected" data-method="card" onclick="selectPaymentMethod('card')">
+            <span class="payment-method-icon">💳</span>
+            <span class="payment-method-name">Card</span>
+          </div>
+          <div class="payment-method" data-method="upi" onclick="selectPaymentMethod('upi')">
+            <span class="payment-method-icon">📱</span>
+            <span class="payment-method-name">UPI</span>
+          </div>
+          <div class="payment-method" data-method="cash" onclick="selectPaymentMethod('cash')">
+            <span class="payment-method-icon">💵</span>
+            <span class="payment-method-name">Cash</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block btn-lg" onclick="processPayment()">
+        ⚡ &nbsp;Pay Now
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== RATING MODAL ===== -->
+  <div class="modal-overlay hidden" id="ratingModal">
+    <div class="modal" style="text-align:center;">
+      <button class="modal-close" onclick="closeRatingModal()">✕</button>
+      <div style="font-size:2.5rem;margin-bottom:16px;">⭐</div>
+      <h2 class="modal-title">RATE YOUR DRIVER</h2>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:24px;">How was your experience?</p>
+
+      <div class="stars" style="justify-content:center;gap:12px;margin-bottom:24px;">
+        <span class="star" style="font-size:2rem;" data-val="1" onclick="setRating(1)">★</span>
+        <span class="star" style="font-size:2rem;" data-val="2" onclick="setRating(2)">★</span>
+        <span class="star" style="font-size:2rem;" data-val="3" onclick="setRating(3)">★</span>
+        <span class="star" style="font-size:2rem;" data-val="4" onclick="setRating(4)">★</span>
+        <span class="star" style="font-size:2rem;" data-val="5" onclick="setRating(5)">★</span>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="submitRating()" id="submitRatingBtn">
+        Submit Rating
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div class="modal-overlay hidden" id="successModal">
+    <div class="modal" style="text-align:center;">
+      <div class="success-badge">✅</div>
+      <h2 class="modal-title" style="color:var(--success);">PAYMENT SUCCESS!</h2>
+      <p style="color:var(--text-muted);margin:12px 0 24px;">Your ride has been completed. Thank you for using Let Me Drive!</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button class="btn btn-success btn-block" onclick="openRatingFromSuccess()">⭐ Rate Your Driver</button>
+        <button class="btn btn-ghost btn-block" onclick="closeSuccessModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="utils.js"></script>
+  <script src="passenger-dashboard.js"></script>
+</body>
+</html>

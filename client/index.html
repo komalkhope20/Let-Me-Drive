@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let Me Drive — Connect Drivers with Car Owners</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">
+      <span class="logo-icon">🚗</span>
+      LET ME <span>DRIVE</span>
+    </a>
+    <div class="navbar-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#why-us">Why Us</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn btn-primary" style="padding:8px 18px;font-size:0.85rem;">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span>🟢</span> Now Live in Your City
+        </div>
+        <h1 class="display-title hero-title">
+          YOUR CAR.<br>OUR DRIVER.
+        </h1>
+        <p class="hero-subtitle">
+          Connecting skilled young drivers with car owners who prefer not to drive.
+          Safe, affordable, and trustworthy rides — in your own car.
+        </p>
+        <div class="hero-cta">
+          <a href="register.html?role=passenger" class="btn btn-primary btn-lg">
+            🚗 &nbsp;Book a Driver
+          </a>
+          <a href="register.html?role=driver" class="btn btn-outline btn-lg">
+            🪪 &nbsp;Drive & Earn
+          </a>
+        </div>
+        <!-- <div class="hero-stats">
+          <div>
+            <div class="hero-stat-value">500+</div>
+            <div class="hero-stat-label">Verified Drivers</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">2K+</div>
+            <div class="hero-stat-label">Rides Completed</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">4.8⭐</div>
+            <div class="hero-stat-label">Avg. Rating</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="hero-visual">
+        <div class="hero-car">🚗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="text-center mb-6" style="max-width:540px;margin-left:auto;margin-right:auto;">
+        <h2 class="section-title">HOW IT WORKS</h2>
+        <p style="color:var(--text-secondary);margin-top:12px;">Two simple journeys — one powerful platform</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;" class="how-grid">
+        <!-- Passenger Journey -->
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-dim);border:1px solid var(--border-accent);border-radius:100px;padding:6px 14px;font-size:0.78rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px;">
+            🚘 For Car Owners
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="step-card">
+              <div class="step-number">01</div>
+              <div class="step-icon">✍️</div>
+              <div class="step-title">REGISTER</div>
+              <p class="step-desc">Sign up as a Passenger. Tell us about your car type and get verified in minutes.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">02</div>
+              <div class="step-icon">🔍</div>
+              <div class="step-title">FIND A DRIVER</div>
+              <p class="step-desc">Browse verified drivers by experience and ratings. Pick the one that feels right.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">03</div>
+              <div class="step-icon">📍</div>
+              <div class="step-title">BOOK & PAY</div>
+              <p class="step-desc">Enter pickup & destination. See fare upfront. Pay securely. Ride in comfort.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Driver Journey -->
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-2-dim);border:1px solid rgba(245,166,35,0.3);border-radius:100px;padding:6px 14px;font-size:0.78rem;font-weight:700;color:var(--accent-2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px;">
+            🪪 For Drivers
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="step-card">
+              <div class="step-number">01</div>
+              <div class="step-icon">📋</div>
+              <div class="step-title">REGISTER</div>
+              <p class="step-desc">Sign up as a Driver. Submit your license details and get verified to start.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">02</div>
+              <div class="step-icon">🟢</div>
+              <div class="step-title">GO AVAILABLE</div>
+              <p class="step-desc">Toggle your availability status when you're ready to accept rides from nearby passengers.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">03</div>
+              <div class="step-icon">💰</div>
+              <div class="step-title">DRIVE & EARN</div>
+              <p class="step-desc">Accept bookings, drive passengers, collect your fare and build your rating.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section class="section section-alt" id="why-us">
+    <div class="container">
+      <div class="text-center mb-6">
+        <h2 class="section-title">WHY CHOOSE US</h2>
+        <p style="color:var(--text-secondary);margin-top:12px;">Built for trust. Designed for convenience.</p>
+      </div>
+
+      <div class="grid-3 mt-8">
+        <div class="card" style="text-align:center;padding:36px 24px;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">🛡️</div>
+          <h4 style="margin-bottom:10px;font-size:1.05rem;">Verified Drivers</h4>
+          <p style="color:var(--text-secondary);font-size:0.88rem;">Every driver is license-verified and background-checked before joining the platform.</p>
+        </div>
+        <div class="card" style="text-align:center;padding:36px 24px;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">💳</div>
+          <h4 style="margin-bottom:10px;font-size:1.05rem;">Transparent Pricing</h4>
+          <p style="color:var(--text-secondary);font-size:0.88rem;">No surge pricing. See your total fare before booking — ₹50 base + ₹12/km, always.</p>
+        </div>
+        <div class="card" style="text-align:center;padding:36px 24px;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">⭐</div>
+          <h4 style="margin-bottom:10px;font-size:1.05rem;">Rating System</h4>
+          <p style="color:var(--text-secondary);font-size:0.88rem;">Rate drivers after every ride. Quality assured through community feedback.</p>
+        </div>
+        <div class="card" style="text-align:center;padding:36px 24px;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">🚗</div>
+          <h4 style="margin-bottom:10px;font-size:1.05rem;">Your Car, Your Comfort</h4>
+          <p style="color:var(--text-secondary);font-size:0.88rem;">The driver comes to you and drives your own vehicle. Familiar surroundings every time.</p>
+        </div>
+        <div class="card" style="text-align:center;padding:36px 24px;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">⚡</div>
+          <h4 style="margin-bottom:10px;font-size:1.05rem;">Instant Booking</h4>
+          <p style="color:var(--text-secondary);font-size:0.88rem;">Pick an available driver, enter your route, and confirm a booking in under 60 seconds.</p>
+        </div>
+        <div class="card" style="text-align:center;padding:36px 24px;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">📱</div>
+          <h4 style="margin-bottom:10px;font-size:1.05rem;">Easy to Use</h4>
+          <p style="color:var(--text-secondary);font-size:0.88rem;">Designed for everyone — from tech-savvy youngsters to senior car owners who prefer simplicity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="section" style="text-align:center;">
+    <div class="container--narrow">
+      <div style="background:var(--bg-card);border:1px solid var(--border-accent);border-radius:var(--radius-xl);padding:60px 40px;box-shadow:var(--shadow-glow);position:relative;overflow:hidden;">
+        <div style="font-size:4rem;margin-bottom:16px;">🚗</div>
+        <h2 class="section-title" style="margin-bottom:16px;">READY TO RIDE?</h2>
+        <p style="color:var(--text-secondary);margin-bottom:32px;max-width:400px;margin-left:auto;margin-right:auto;">
+          Join thousands of drivers and car owners already using Let Me Drive.
+        </p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="register.html?role=passenger" class="btn btn-primary btn-lg">I Need a Driver</a>
+          <a href="register.html?role=driver" class="btn btn-outline btn-lg">I Want to Drive</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;flex-wrap:wrap;">
+        <div>
+          <div class="footer-brand">LET ME <span>DRIVE</span></div>
+          <p class="footer-tagline">Bridging the gap between skilled drivers<br>and car owners who'd rather be passengers.</p>
+        </div>
+        <div>
+          <p style="font-weight:700;font-size:0.85rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Platform</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="register.html?role=driver" style="color:var(--text-muted);font-size:0.88rem;">Become a Driver</a>
+            <a href="register.html?role=passenger" style="color:var(--text-muted);font-size:0.88rem;">Book a Driver</a>
+            <a href="login.html" style="color:var(--text-muted);font-size:0.88rem;">Sign In</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-weight:700;font-size:0.85rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Info</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="#how-it-works" style="color:var(--text-muted);font-size:0.88rem;">How it Works</a>
+            <a href="#why-us" style="color:var(--text-muted);font-size:0.88rem;">Why Choose Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Let Me Drive. All rights reserved.</span>
+        <span>Made by ❤️ Komal Khope</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+  <script src="utils.js"></script>
+</body>
+</html>
